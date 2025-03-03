@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Homepage</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    .topnav {
+      background: #333;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo {
+      font-weight: bold;
+      width: 150px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    
+    .search-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .search-container input {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    
+    .top-links {
+      width: 150px;
+      text-align: right;
+    }
+    
+    .top-links a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+    
+    .main-container {
+      display: flex;
+      flex: 1;
+    }
+    
+    .sidenav {
+      width: 200px;
+      background: #f1f1f1;
+      padding: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .sidenav.collapsed {
+      transform: translateX(-100%);
+      position: absolute;
+      height: calc(100% - 56px);
+      z-index: 10;
+    }
+    
+    .sidenav a {
+      display: block;
+      padding: 0.5rem 0;
+      color: #333;
+      text-decoration: none;
+    }
+    
+    .content {
+      flex: 1;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation with Centered Search -->
+  <nav class="topnav">
+    <div class="logo">
+      <button class="menu-toggle" onclick="toggleNav()">☰</button>
+      MyWebsite
+    </div>
+    <div class="search-container">
+      <input type="text" placeholder="Search...">
+    </div>
+    <div class="top-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+    </div>
+  </nav>
+  
+  <div class="main-container">
+    <!-- Side Navigation -->
+    <nav class="sidenav" id="sidenav">
+      <a href="#">Dashboard</a>
+      <a href="#">Products</a>
+      <a href="#">Services</a>
+      <a href="#">Resources</a>
+      <a href="#">Blog</a>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="content">
+      <h1>Welcome to MyWebsite</h1>
+      <p>This is a minimal homepage with a top navigation bar featuring a centered search, and a collapsible side navigation menu.</p>
+    </main>
+  </div>
+
+  <script>
+    function toggleNav() {
+      const sidenav = document.getElementById("sidenav");
+      sidenav.classList.toggle("collapsed");
+    }
+  </script>
+</body>
+</html>
