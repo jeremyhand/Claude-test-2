@@ -134,3 +134,7 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+if os.getenv("DJANGO_RUNSERVER_PORT"):
+    RUNSERVER_PORT = os.getenv("DJANGO_RUNSERVER_PORT", "8080")

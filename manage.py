@@ -17,7 +17,8 @@ def main():
         ) from exc
     if len(sys.argv) == 1:
         sys.argv.append("runserver")
-        sys.argv.append("8080")
+        sys.argv.append("0.0.0.0:8080")  # Change the default port here
+
     execute_from_command_line(sys.argv)
 
 
