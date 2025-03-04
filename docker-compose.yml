@@ -1,10 +1,10 @@
-version: '3'
+version: '3.8'  # Updated to a newer version
 
 services:
   web:
     build: .
     ports:
-      - "8000:8000"
+      - "8080:8080"  # Changed from 8000 to 8080
     volumes:
       - .:/app
       - static_volume:/app/staticfiles
@@ -12,7 +12,8 @@ services:
       - .env
     restart: always
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # Ensures database is ready before starting Django
 
   db:
     image: postgres:13
@@ -24,7 +25,13 @@ services:
       - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
-  static_volume: 
+  static_volume:
