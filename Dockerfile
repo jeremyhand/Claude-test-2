@@ -21,7 +21,7 @@ RUN chmod +x entrypoint.sh
 RUN mkdir -p /app/staticfiles && chmod -R 777 /app/staticfiles
 
 # Expose port
-EXPOSE 8000
+EXPOSE 8080
 
 # Create a non-root user to run the application
 RUN adduser --disabled-password --gecos '' django-user
