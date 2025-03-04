@@ -1,37 +1,18 @@
-version: '3.8'  # Updated to a newer version
-
 services:
   web:
-    build: .
+    image: nginx:latest
     ports:
-      - "8080:8080"  # Changed from 8000 to 8080
+      - "8080:8080"
     volumes:
-      - .:/app
-      - static_volume:/app/staticfiles
-    env_file:
-      - .env
-    restart: always
-    depends_on:
-      db:
-        condition: service_healthy  # Ensures database is ready before starting Django
+      - ./html:/usr/share/nginx/html
 
   db:
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    image: mysql:latest
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-    ports:
-      - "5432:5432"
-    restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: mydb
+    volumes:
+      - db_data:/var/lib/mysql
 
 volumes:
-  postgres_data:
-  static_volume:
+  db_data:
